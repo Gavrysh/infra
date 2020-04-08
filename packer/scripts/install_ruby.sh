@@ -20,5 +20,5 @@ rvm use 2.4.1 --default
 gem install bundler -V --no-ri --no-rdoc
 
 # Check version Ruby and Bundler
-ruby -v > ~/output.ver
-bundler -v >> ~/output.ver
+ruby -v > output.ver
+bundler -v >> output.ver
