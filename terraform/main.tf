@@ -31,6 +31,11 @@ resource "google_compute_instance" "app" {
     sshKeys = "appuser:${file("~/.ssh/id_rsa.pub")}"
   }
 
+  provisioner "file" {
+    source = "files/puma.service"
+    destination = "/tmp/puma.service"
+}
+
 }
 
 resource "google_compute_firewall" "firewall_puma" {
