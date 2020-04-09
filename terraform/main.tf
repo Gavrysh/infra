@@ -31,6 +31,14 @@ resource "google_compute_instance" "app" {
     sshKeys = "appuser:${file("~/.ssh/id_rsa.pub")}"
   }
 
+  connection {
+    host = "reddit-app"
+    type = "ssh"
+    user = "appuser"
+    agent = false
+    private_key = file("~/.ssh/id_rsa")
+  }
+
   provisioner "file" {
     source = "files/puma.service"
     destination = "/tmp/puma.service"
