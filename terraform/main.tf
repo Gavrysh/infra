@@ -1,46 +1,46 @@
 provider "google" {
-  project = "infra-273615"
-  region  = "europe-west1"
+  project = var.project
+  region  = var.region
 }
 
 resource "google_compute_instance" "app" {
-  name = "reddit-app"
+  name         = "reddit-app"
   machine_type = "g1-small"
-  zone = "europe-west1-b"
+  zone         = "europe-west1-b"
 
   tags = ["reddit-app"]
 
-# определение загрузочного диска
+  # определение загрузочного диска
   boot_disk {
     initialize_params {
-      image = "reddit-base-1586421210"
+      image = var.disk_image
     }
   }
 
-# определение сетевого интерфейса
+  # определение сетевого интерфейса
   network_interface {
 
-# сеть, к которой присоединить данный интерфейс
+    # сеть, к которой присоединить данный интерфейс
     network = "default"
 
-# использовать ephemeral IP для доступа из Интернет
+    # использовать ephemeral IP для доступа из Интернет
     access_config {}
   }
 
   metadata = {
-    sshKeys = "appuser:${file("~/.ssh/id_rsa.pub")}"
+    sshKeys = "appuser:${var.public_key_path}"
   }
 
   connection {
-    host = "reddit-app"
-    type = "ssh"
-    user = "appuser"
-    agent = false
-    private_key = file("~/.ssh/id_rsa")
+    host        = "reddit-app"
+    type        = "ssh"
+    user        = "appuser"
+    agent       = false
+    private_key = var.private_key_path
   }
 
   provisioner "file" {
-    source = "files/puma.service"
+    source      = "files/puma.service"
     destination = "/tmp/puma.service"
   }
 
@@ -52,15 +52,15 @@ resource "google_compute_instance" "app" {
 
 resource "google_compute_firewall" "firewall_puma" {
   name = "allow-puma-default"
-# Название сети, в которой действует правило
+  # Название сети, в которой действует правило
   network = "default"
-# Какой доступ разрешить
+  # Какой доступ разрешить
   allow {
     protocol = "tcp"
-    ports = ["9292"]
+    ports    = ["9292"]
   }
-# Каким адресам разрешаем доступ
+  # Каким адресам разрешаем доступ
   source_ranges = ["0.0.0.0/0"]
-# Правило применимо для инстансов с тегом ...
+  # Правило применимо для инстансов с тегом ...
   target_tags = ["reddit-app"]
 }
