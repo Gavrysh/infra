@@ -5,8 +5,8 @@
 # --------------------- Part one ----------------------------------
 
 # Install RVM for current user
+cd ~
 gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-cd /root
 curl -sSL https://get.rvm.io | bash -s stable
 
 # run RVM script and setup dependence for work RVM & Ruby
@@ -23,8 +23,8 @@ rvm use 2.4.1 --default
 gem install bundler -V --no-ri --no-rdoc
 
 # Check version Ruby and Bundler
-ruby -v > /root/output.ver
-bundler -v >> /root/output.ver
+ruby -v > ~/output.ver
+bundler -v >> ~/output.ver
 
 # ------------------------ Part two -------------------------------
 
@@ -42,13 +42,10 @@ apt install -y mongodb-org
 # Start MongoDB, add to autostart with system, check status and version
 systemctl start mongod
 systemctl enable mongod
-systemctl status mongod
 
-mongod -version >> /root/output.ver
+mongod -version >> ~/output.ver
 
 # ----------------------- Part three -------------------------------
-
-cd /root
 
 # Copy application from GitHub (use https)
 git clone https://github.com/Artemmkin/reddit.git
@@ -58,6 +55,3 @@ cd reddit && bundle install
 
 # run application server in project folder
 puma -d
-
-# check running application server and port
-ps aux | grep puma >> /root/output.ver

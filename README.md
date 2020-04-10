@@ -8,5 +8,7 @@ gcloud compute instances create reddit-app \
 --machine-type=g1-small \
 --tags puma-server \
 --restart-on-failure \
---zone=europe-west1-b
+--zone=europe-west1-b \
+--metadata-from-file startup-script=startup.sh
 
+Скрипт отрабатывает только от root (особенность gcloud)

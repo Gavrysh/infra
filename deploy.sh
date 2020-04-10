@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd ~
-
 # Copy application from GitHub (use https)
 git clone https://github.com/Artemmkin/reddit.git
 
@@ -13,4 +11,3 @@ puma -d
 
 # check running application server and port
 ps aux | grep puma
-
