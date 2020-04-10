@@ -2,7 +2,8 @@
 set -e
 
 source ~/.profile
-git clone https://github.com/Artemmkin/reddit.git
+
+git clone -b monolith https://github.com/express42/reddit 
 cd reddit
 bundle install
 

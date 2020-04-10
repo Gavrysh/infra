@@ -28,15 +28,15 @@ resource "google_compute_instance" "app" {
   }
 
   metadata = {
-    sshKeys = "appuser:${var.public_key_path}"
+    sshKeys = "appuser:${file(var.public_key_path)}"
   }
 
   connection {
-    host        = "reddit-app"
+    host        = self.network_interface[0].access_config[0].nat_ip
     type        = "ssh"
     user        = "appuser"
     agent       = false
-    private_key = var.private_key_path
+    private_key = file(var.private_key_path)
   }
 
   provisioner "file" {
