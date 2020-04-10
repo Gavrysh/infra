@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "googlecompute",
-      "project_id": "concrete-envoy-273010",
+      "project_id": "infra-273615",
       "image_name": "reddit-base-{{timestamp}}",
       "image_description": "описание полученного образа",
       "source_image": "ubuntu-1604-xenial-v20200317",
@@ -18,17 +18,8 @@
   "provisioners": [
     {
       "type": "shell",
-      "script": "scripts/install_ruby.sh"
-    },
-    {
-      "type": "shell",
       "script": "scripts/install_mongodb.sh",
       "execute_command": "sudo {{.Path}}"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/deploy.sh"
     }
   ]
 }
-
