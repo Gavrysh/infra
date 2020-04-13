@@ -15,7 +15,7 @@ resource "google_compute_firewall" "firewall_puma" {
     protocol = "tcp"
     ports    = ["9292"]
   }
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = var.source_ranges_puma
   target_tags   = ["reddit-app"]
 }
 
