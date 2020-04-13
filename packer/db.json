@@ -3,7 +3,7 @@
     {
       "type": "googlecompute",
       "project_id": "infra-273615",
-      "image_name": "reddit-base-{{timestamp}}",
+      "image_name": "reddit-db-base",
       "image_description": "описание полученного образа",
       "source_image": "ubuntu-1604-xenial-v20200317",
       "disk_size": "10",
