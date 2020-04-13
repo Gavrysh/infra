@@ -1,7 +1,7 @@
 resource "google_compute_instance" "app" {
-  name = "reddit-app"
+  name         = "reddit-app"
   machine_type = "g1-small"
-  zone = "europe-west1-b"
+  zone         = "europe-west1-b"
 
   tags = ["reddit-app"]
 
@@ -28,12 +28,12 @@ resource "google_compute_address" "app_ip" {
 }
 
 resource "google_compute_firewall" "firewall_puma" {
-  name = "allow-puma-default"
+  name    = "allow-puma-default"
   network = "default"
   allow {
     protocol = "tcp"
-    ports = ["9292"]
+    ports    = ["9292"]
   }
   source_ranges = ["0.0.0.0/0"]
-  target_tags = ["reddit-app"]
+  target_tags   = ["reddit-app"]
 }
