@@ -23,6 +23,6 @@
 в файле `terraform.tfvars`
 
 Перейти в каталог terraform  выполнить
-`$ terraform init
-$ terraform plan
-$ terraform apply`
+`$ terraform init`
+`$ terraform plan`
+`$ terraform apply`
