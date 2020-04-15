@@ -1,7 +1,8 @@
 # infra
 # инфрастурктурный репозиторий
 
-`gcloud compute instances create reddit-app \
+```
+gcloud compute instances create reddit-app \
 --boot-disk-size=10GB \
 --image-project=ubuntu-os-cloud \
 --image=ubuntu-1604-xenial-v20200407 \
@@ -9,7 +10,8 @@
 --tags puma-server \
 --restart-on-failure \
 --zone=europe-west1-b \
---metadata-from-file startup-script=startup.sh`
+--metadata-from-file startup-script=startup.sh
+```
 
 Скрипт отрабатывает только от root (особенность gcloud)
 
@@ -24,9 +26,15 @@
 * db_disk_image
 в файле `terraform.tfvars`
 
-Перейти в каталог terraform  выполнить
+Перейти в каталог infra/terraform выполнить
 ```
 $ terraform init
 $ terraform plan
 $ terraform apply
+```
+
+Также рабочими являются каталоги stage и prod внутри которых отрабатывает **terraform**
+После проверки работоспособности необходимо выполнить команду
+```
+$ terraform destroy
 ```
