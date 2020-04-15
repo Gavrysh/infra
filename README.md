@@ -38,3 +38,11 @@ $ terraform apply
 ```
 $ terraform destroy
 ```
+## Unit 10
+Созданы *playbooks* для **app** и **db** (`ansible/reddit_app.yml`, `ansible/reddit_db.yml`) которые можно проверить командами
+```
+$ ansible-playbook -u appuser -i <IP instance>, reddit_app.yml
+$ ansible-playbook -u appuser -i <IP instance>, reddit_db.yml
+
+```
+Взаимодействие *playbooks* с **packer** выполнена отдельными файлами - `packer/app.json` и `packer/db.json`
