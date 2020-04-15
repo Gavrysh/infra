@@ -14,6 +14,8 @@
 Скрипт отрабатывает только от root (особенность gcloud)
 
 ## Unit 9
+Создать образы с помощью **packer** на основе `infra/packer/app.json` и `infra/packer/db.json`
+
 Определить переменные
 * project
 * public_key_path
