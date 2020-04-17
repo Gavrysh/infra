@@ -82,8 +82,9 @@ $ ansible-playbook reddit_app.yml --limit app --tags deploy-tag --check
 $ ansible-playbook reddit_app.yml --limit app --tags deploy-tag
 ```
 Выполнить проверку приложения в браузере
+```
 <Internal IP app>:9292
-
+```
 После проверки работоспособности необходимо выполнить команду
 ```
 $ terraform destroy
